@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+.links {
+  text-decoration: none;
+}
+
+.header {
+  margin-top: 5px;
+  position: absolute;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 275px;
+}
+
+.header #pageTitle {
+  color: white;
+  font-size: 35px;
+  font-weight: 700;
+  text-shadow: 2px 2px 5px slategray;
+}
+
+.header img {
+  height: 35px;
+  margin-top: 2px;
+}
+/*# sourceMappingURL=App.css.map */

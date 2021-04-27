@@ -1,0 +1,51 @@
+.welcome-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: none;
+}
+
+.welcome-content .welcome-version {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.welcome-content .welcome-sectionTitles {
+  width: 100%;
+  text-align: left;
+}
+
+.welcome-content .welcome-sectionBodies {
+  width: 100%;
+  padding: 5px;
+  text-align: justify;
+}
+
+.welcome-content .welcome-sectionLists {
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+/*# sourceMappingURL=WelcomeModal.css.map */
