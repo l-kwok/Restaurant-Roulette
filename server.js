@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const axios = require("axios");
+const path = require('path');
 //temp to reduce api calls to google servers
 const fs = require("fs");
 const dummyData = require("./placesData.json");
@@ -50,5 +51,13 @@ app.post("/api/places", (req, res) => {
 			}
 		});
 });
+
+if (process.env.NODE_ENV === "production") {
+	const buildDir = '/client/build'
+	app.use(express.static(path.join(__dirname, buildDir)));
+	app.get("/*", (req, res) => {
+		res.sendFile(path.join(__dirname, buildDir, "index.html"));
+	});
+}
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
