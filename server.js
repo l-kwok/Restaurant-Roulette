@@ -16,34 +16,39 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/api/places", (req, res) => {
-	console.log(req.body);
 	const request = req.body;
+	console.log(req.body);
 	if (request.foodType === "") {
-		request.foodType = "restaurants";
+		request.foodType =
+			"japanese,korean,vietnamese,hotdogs,chinese,newamerican,tradeamerican,indpak";
 	}
-	// axios
-	// 	.get(
-	// 		`https://api.yelp.com/v3/businesses/search?term=${request.foodType}&latitude=${request.location.lat}&longitude=${request.location.lng}&limit=50`,
-	// 		{
-	// 			headers: {
-	// 				Authorization: `Bearer ${process.env.API_KEY_YELP}`,
-	// 			},
-	// 		}
-	// 	)
-	// 	.then((response) => {
-	// 		console.log(response.data);
-	// 		res.send(response.data);
-	// 		// fs.writeFile("placesData.json", JSON.stringify(response.data), (err) => {
-	// 		// 	if (err) {
-	// 		// 		throw err;
-	// 		// 	}
-	// 		// 	console.log("JSON data is saved.");
-	// 		// });
-	// 	})
-	// 	.catch((e) => {
-	// 		console.log(`Businesses API Error : ${e}`);
-	// 	});
-	res.send(dummyData);
+	axios
+		.get(
+			`https://api.yelp.com/v3/businesses/search?categories=${request.foodType}&latitude=${request.location.lat}&longitude=${request.location.lng}&radius=${request.range}&open_now=${request.openNow}&limit=50`,
+			{
+				headers: {
+					Authorization: `Bearer ${process.env.API_KEY_YELP}`,
+				},
+			}
+		)
+		.then((response) => {
+			// console.log(response.data);
+			res.send(response.data);
+			// fs.writeFile("placesData.json", JSON.stringify(response.data), (err) => {
+			// 	if (err) {
+			// 		throw err;
+			// 	}
+			// 	console.log("JSON data is saved.");
+			// });
+		})
+		.catch((e) => {
+			console.log(`Businesses API Error : ${e}`);
+			if (e.status === 429) {
+				res.sendStatus(429); //Quota Reached
+			} else {
+				res.sendStatus(500); //Internal Server Error
+			}
+		});
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

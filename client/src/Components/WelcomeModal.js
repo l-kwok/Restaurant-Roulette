@@ -26,6 +26,9 @@ const WelcomeModal = () => {
                             <li>
                                 Search for restaurants by Cuisine and Distance
                             </li>
+                            <li>
+                                Note: You may see repeat restaurants for a single search, change the search options (range, cuisine, opennow) if you want new restaurants. Working on improving this. 
+                            </li>
                         </ul>
                         <h5 className="welcome-sectionTitles">Coming Soon:</h5>
                         <ul className="welcome-sectionLists">

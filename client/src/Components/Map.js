@@ -8,11 +8,17 @@ import {
 import "../Style/Map.css";
 import "../Style/MapStyle";
 import MapStyle from "../Style/MapStyle";
-import Spinner from "react-bootstrap/Spinner";
+import { Spinner } from "react-bootstrap";
 import Options from "../Components/Options";
 import MarkerAndWindow from "../Components/MarkerAndWindow";
 
-const Map = (props) => {
+const Map = ({
+	errorType,
+	showError,
+	setShowError,
+	setErrorType,
+	userLocation,
+}) => {
 	const [places, setPlaces] = useState(null); //current fetched restaurants
 	const [usedPlaceIndices, setUsedPlaceIndices] = useState([]);
 	const [query, setQuery] = useState(null);
@@ -23,9 +29,8 @@ const Map = (props) => {
 	const [youAreHereWindowIsOpen, setYouAreHereWindowIsOpen] = useState(false);
 
 	//Map Options
-	const [zoom, setZoom] = useState(13);
-	const [center, setCenter] = useState(props.center);
-	const [userLocation, setUserLocation] = useState(props.center);
+	const [zoom, setZoom] = useState(14);
+	const [center, setCenter] = useState(userLocation);
 	const containerStyle = {
 		width: "100vw",
 		height: "100vh",
@@ -39,13 +44,12 @@ const Map = (props) => {
 		setPlacesIsLoaded(false);
 
 		let reqParsed = {
-			range: 1000,
+			range: 5,
 			foodType: "",
 			openNow: true,
 			location: userLocation,
 		};
 		if (query !== null) {
-			console.log(`request: ${query}`);
 			reqParsed = JSON.parse(query);
 		}
 		fetch("/api/places", {
@@ -54,44 +58,49 @@ const Map = (props) => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				range: reqParsed.range,
+				range: reqParsed.range * 1000,
 				foodType: reqParsed.foodType,
 				openNow: reqParsed.openNow,
 				location: userLocation,
 			}),
 		}).then((res) => {
-			res.text().then((res) => {
-				const resParsed = JSON.parse(res);
-				//format for google maps markers
-				resParsed.businesses.forEach((item) => {
-					item.coordinates = {
-						lat: item.coordinates.latitude,
-						lng: item.coordinates.longitude,
-					};
-				});
-				setPlaces(resParsed);
-				setUsedPlaceIndices(
-					resParsed.businesses.map((item, index) => {
-						return index;
-					})
-				);
+			if (res.status === 500) {
+				setErrorType(1); //Server Error
 				setPlacesIsLoaded(true);
-			});
-		});
-	}, [userLocation, query]);
+			} else if (res.status === 429) {
+				setErrorType(2); //Quota Reached
+				setPlacesIsLoaded(true);
+			} else { //Res Status 200
+				res.text().then((res) => {
+					const resParsed = JSON.parse(res);
+					//format for google maps markers
+					resParsed.businesses.forEach((item) => {
+						item.coordinates = {
+							lat: item.coordinates.latitude,
+							lng: item.coordinates.longitude,
+						};
+					});
+					
+					if (resParsed.total === 0) {
+						setErrorType(3);
+						setShowError(true);
+						setCenter(userLocation);
+					} else {
+						setErrorType(0);
+						setShowError(false);
+					}
 
-	useEffect(() => {
-		navigator.geolocation.getCurrentPosition(function (position) {
-			setUserLocation({
-				lat: position.coords.latitude,
-				lng: position.coords.longitude,
-			});
-			setCenter({
-				lat: position.coords.latitude,
-				lng: position.coords.longitude,
-			});
+					setPlaces(resParsed);
+					setUsedPlaceIndices(
+						resParsed.businesses.map((item, index) => {
+							return index;
+						})
+					);
+					setPlacesIsLoaded(true);
+				});
+			}
 		});
-	}, []);
+	}, [userLocation, query, setErrorType, setShowError]);
 
 	//Load React Google Maps
 	const { isLoaded, loadError } = useJsApiLoader({
@@ -100,40 +109,42 @@ const Map = (props) => {
 	});
 
 	const pickLocation = () => {
-		const selectedIndex = Math.floor(Math.random() * usedPlaceIndices.length);
-		const indexOfLocation = usedPlaceIndices[selectedIndex];
-		const place = places.businesses[indexOfLocation];
-		const placeQueryName = place.name.replace(/\s/g, "+");
+		if (errorType === 0 && showError === false) {
+			const selectedIndex = Math.floor(Math.random() * usedPlaceIndices.length);
+			const indexOfLocation = usedPlaceIndices[selectedIndex];
+			const place = places.businesses[indexOfLocation];
+			const placeQueryName = place.name.replace(/\s/g, "+");
 
-		//update map
-		setSelectedPlace(place);
-		setCenter(place.coordinates);
-		setZoom(15);
-		setInfoWindowIsOpen(true);
-		setGoogleSearchQuery(
-			`https://www.google.com/maps/search/?api=1&query=${placeQueryName}`
-		);
-
-		usedPlaceIndices.splice(selectedIndex, 1);
-		if (usedPlaceIndices.length === 0) {
-			setUsedPlaceIndices(
-				places.businesses.map((item, index) => {
-					return index;
-				})
+			//update map
+			setSelectedPlace(place);
+			setCenter(place.coordinates);
+			setZoom(15);
+			setInfoWindowIsOpen(true);
+			setGoogleSearchQuery(
+				`https://www.google.com/maps/search/?api=1&query=${placeQueryName}+${place.location.address1}+${place.location.city}`
 			);
+
+			usedPlaceIndices.splice(selectedIndex, 1);
+			if (usedPlaceIndices.length === 0) {
+				setUsedPlaceIndices(
+					places.businesses.map((item, index) => {
+						return index;
+					})
+				);
+			}
+		} else {
+			setShowError(true);
+			setCenter(userLocation);
 		}
 	};
 
 	const retrieveParams = (params) => {
 		setQuery(params);
-	};
 
-	const closeInfoWindow = () => {
-		setInfoWindowIsOpen(false);
-	};
-
-	const openInfoWindow = () => {
-		setInfoWindowIsOpen(true);
+		if (errorType === 1) {
+			setErrorType(0); //Resolve type 1 errors (empty business array)
+			setShowError(false);
+		}
 	};
 
 	if (loadError) {
@@ -157,21 +168,25 @@ const Map = (props) => {
 						setYouAreHereWindowIsOpen(false);
 					}}
 				>
-					{placesIsLoaded ? (
+					<div className="header">
+						<h1 id="pageTitle">Food Picker </h1>
+						<img src="icon.svg" alt="icon" />
+					</div>
+					{placesIsLoaded && errorType === 0 ? (
 						<MarkerAndWindow
 							selectedPlace={selectedPlace}
 							infoWindowIsOpen={infoWindowIsOpen}
 							googleSearchQuery={googleSearchQuery}
-							closeInfoWindow={closeInfoWindow}
-							openInfoWindow={openInfoWindow}
+							closeInfoWindow={() => setInfoWindowIsOpen(false)}
+							openInfoWindow={() => setInfoWindowIsOpen(true)}
 						></MarkerAndWindow>
 					) : null}
+
 					<Marker
 						position={{
 							lat: userLocation.lat,
 							lng: userLocation.lng,
 						}}
-						draggable={true}
 						onClick={() => setYouAreHereWindowIsOpen(true)}
 					>
 						{youAreHereWindowIsOpen ? (

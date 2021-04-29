@@ -1,8 +1,13 @@
-.optionsFormGroups {
+.Modal {
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.Modal .optionsFormGroups {
   margin-bottom: 20px;
 }
 
-.optionsFormGroups .formLabels {
+.Modal .optionsFormGroups .formLabels {
   font-weight: 600;
 }
 /*# sourceMappingURL=Options.css.map */

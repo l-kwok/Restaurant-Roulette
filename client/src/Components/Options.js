@@ -5,15 +5,13 @@ import "../Style/Options.css";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 const Options = (props) => {
 	const [showModal, setShowModal] = useState(false);
-	const [rangeValue, setRangeValue] = useState(0.5);
+	const [rangeValue, setRangeValue] = useState(10);
 	const [showRangeValue, setShowRangeValue] = useState(false);
 	const [foodType, setFoodType] = useState("");
 	const [openNow, setOpenNow] = useState(true);
-	// const [priceValue, setPriceValue] = useState(0);
-	// const [priceLabel, setPriceLabel] = useState("");
-	// const [touchingPriceSlider, setTouchingPriceSlider] = useState(false);
 	const closeModal = () => setShowModal(false);
 	const openModal = () => setShowModal(true);
+	
 	const submitChanges = (e) => {
 		const params = JSON.stringify({
 			range: rangeValue,
@@ -64,7 +62,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Japanese`}
 										name="foodTypes"
-										onChange={() => setFoodType("Japanese")}
+										onChange={() => setFoodType("japanese")}
 									/>
 								</Col>
 								<Col>
@@ -74,7 +72,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Korean`}
 										name="foodTypes"
-										onChange={() => setFoodType("Korean")}
+										onChange={() => setFoodType("korean")}
 									/>
 								</Col>
 								<Col>
@@ -84,7 +82,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`American`}
 										name="foodTypes"
-										onChange={() => setFoodType("American")}
+										onChange={() => setFoodType("newamerican,tradeamerican")}
 									/>
 								</Col>
 							</Row>
@@ -96,7 +94,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Chinese`}
 										name="foodTypes"
-										onChange={() => setFoodType("Chinese")}
+										onChange={() => setFoodType("chinese")}
 									/>
 								</Col>
 								<Col>
@@ -106,7 +104,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Indian`}
 										name="foodTypes"
-										onChange={() => setFoodType("Indian")}
+										onChange={() => setFoodType("indpak")}
 									/>
 								</Col>
 								<Col>
@@ -116,7 +114,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Vietnamese`}
 										name="foodTypes"
-										onChange={() => setFoodType("Vietnamese")}
+										onChange={() => setFoodType("vietnamese")}
 									/>
 								</Col>
 							</Row>
@@ -128,7 +126,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`German`}
 										name="foodTypes"
-										onChange={() => setFoodType("German")}
+										onChange={() => setFoodType("german")}
 									/>
 								</Col>
 								<Col>
@@ -138,7 +136,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Fast Food`}
 										name="foodTypes"
-										onChange={() => setFoodType("Fast Food")}
+										onChange={() => setFoodType("hotdogs")}
 									/>
 								</Col>
 								<Col>
@@ -147,7 +145,7 @@ const Options = (props) => {
 										type={"radio"}
 										label={`Malaysian`}
 										name="foodTypes"
-										onChange={() => setFoodType("Japanese")}
+										onChange={() => setFoodType("malaysian")}
 									/>
 								</Col>
 							</Row>
