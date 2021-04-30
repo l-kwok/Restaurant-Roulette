@@ -19,10 +19,6 @@ if (process.env.NODE_ENV === "production") {
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
 
-	app.get("/*", (req, res) => {
-		res.sendFile(path.join(__dirname, buildDir, "index.html"));
-	});
-
 	app.post("/api/places", (req, res) => {
 		const request = req.body;
 		if (request.foodType === "") {
@@ -56,6 +52,10 @@ if (process.env.NODE_ENV === "production") {
 					res.sendStatus(500); //Internal Server Error
 				}
 			});
+	});
+
+	app.get("/*", (req, res) => {
+		res.sendFile(path.join(__dirname, buildDir, "index.html"));
 	});
 }
 
