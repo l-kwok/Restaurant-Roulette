@@ -1,43 +1,3 @@
-#mapWrapper .optionsWrapper {
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  left: 50%;
-  top: 98%;
-  -webkit-transform: translate(-50%, -98%);
-          transform: translate(-50%, -98%);
-  z-index: 2;
-  background-color: white;
-  padding: 10px;
-  height: 60px;
-  width: 180px;
-  border-radius: 5px;
-}
-
-#mapWrapper .optionsWrapper p {
-  cursor: pointer;
-}
-
-#mapWrapper .optionsWrapper p:hover {
-  text-decoration: underline;
-}
-
-#mapWrapper #pickLocationBtn {
-  font-weight: 600;
-  font-size: 20px;
-}
-
 .InfoWindowContent {
   padding: 5px;
   display: -webkit-box;
@@ -57,15 +17,32 @@
 
 .InfoWindowContent #InfoWindowTitle {
   font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .InfoWindowContent #InfoWindowAddress {
   font-weight: 400;
-  font-size: 15px;
+  font-size: 0.8rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+}
+
+.InfoWindowContent #InfoWindowAddressTitle {
+  font-weight: 700;
+  font-size: 0.8rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .InfoWindowContent #InfoWindowLink {
-  font-size: 14px;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .fullScreenWrapper {

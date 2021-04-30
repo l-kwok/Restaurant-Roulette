@@ -169,7 +169,7 @@ const Map = ({
 					}}
 				>
 					<div className="header">
-						<h1 id="pageTitle">Food Picker </h1>
+						<h1 id="pageTitle">Random Restaurant Generator </h1>
 						<img src="icon.svg" alt="icon" />
 					</div>
 					{placesIsLoaded && errorType === 0 ? (

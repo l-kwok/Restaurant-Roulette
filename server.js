@@ -35,14 +35,7 @@ if (process.env.NODE_ENV === "production") {
 				}
 			)
 			.then((response) => {
-				// console.log(response.data);
 				res.send(response.data);
-				// fs.writeFile("placesData.json", JSON.stringify(response.data), (err) => {
-				// 	if (err) {
-				// 		throw err;
-				// 	}
-				// 	console.log("JSON data is saved.");
-				// });
 			})
 			.catch((e) => {
 				console.log(`Businesses API Error : ${e}`);

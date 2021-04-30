@@ -36,7 +36,8 @@ const MarkerAndWindow = ({
 					>
 						<div className="InfoWindowContent">
 							<h4 id="InfoWindowTitle">{selectedPlace.name}</h4>
-							<p id="InfoWindowAddress">{`Address: ${selectedPlace.location.display_address}`}</p>
+							<p id="InfoWindowAddressTitle">{`Address:`}</p>
+							<p id="InfoWindowAddress">{`${selectedPlace.location.display_address}`}</p>
 							<p id="InfoWindowLink">
 								<a
 									className="links"

@@ -30,7 +30,7 @@ const Options = (props) => {
 		<div>
 			<Modal show={showModal} onHide={closeModal} centered>
 				<Modal.Header closeButton>
-					<Modal.Title>Advanced Options</Modal.Title>
+					<Modal.Title>Advanced Search</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form>
@@ -55,7 +55,7 @@ const Options = (props) => {
 								Types of Food: (Pick One)
 							</Form.Label>
 							<Row>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-1"
@@ -65,7 +65,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("japanese")}
 									/>
 								</Col>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-2"
@@ -75,19 +75,19 @@ const Options = (props) => {
 										onChange={() => setFoodType("korean")}
 									/>
 								</Col>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-3"
 										type={"radio"}
-										label={`American`}
+										label={`Western`}
 										name="foodTypes"
 										onChange={() => setFoodType("newamerican,tradeamerican")}
 									/>
 								</Col>
 							</Row>
 							<Row>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-4"
@@ -97,7 +97,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("chinese")}
 									/>
 								</Col>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-5"
@@ -107,7 +107,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("indpak")}
 									/>
 								</Col>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-6"
@@ -119,7 +119,7 @@ const Options = (props) => {
 								</Col>
 							</Row>
 							<Row>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-7"
@@ -129,7 +129,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("german")}
 									/>
 								</Col>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-8"
@@ -139,7 +139,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("hotdogs")}
 									/>
 								</Col>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										id="inline-radio-9"
 										type={"radio"}
@@ -150,7 +150,7 @@ const Options = (props) => {
 								</Col>
 							</Row>
 							<Row>
-								<Col>
+								<Col xs={12} md={4}>
 									<Form.Check
 										id="inline-radio-10"
 										type={"radio"}
@@ -199,7 +199,7 @@ const Options = (props) => {
 				<Button variant="primary" onClick={props.pickLocation}>
 					<span>🎲</span> Pick For Me!
 				</Button>{" "}
-				<p onClick={openModal}>Advanced Options</p>
+				<p onClick={openModal}>Advanced Search</p>
 			</div>
 		</div>
 	);

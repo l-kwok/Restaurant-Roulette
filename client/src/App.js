@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import "./Style/App.css";
 
 const useCurrentLocation = () => {
-	const [error, setError] = useState();
+	const [error, setError] = useState(0);
 	const [location, setLocation] = useState();
 
 	const handleSuccess = (position) => {
@@ -18,8 +18,11 @@ const useCurrentLocation = () => {
 		});
 	};
 
-	const handleError = () => {
-		setError(4);
+	const handleError = (e) => {
+		if (e.code === e.PERMISSION_DENIED) {
+			console.log("Permission Denied");
+			setError(4);
+		}
 	};
 	useEffect(() => {
 		if (!navigator.geolocation) {
@@ -37,12 +40,14 @@ function App() {
 	const [errorType, setErrorType] = useState(0);
 	const [showError, setShowError] = useState(false);
 	const { location, error } = useCurrentLocation();
-	if (error) {
-		setErrorType(error);
-	}
+	console.log(error);
 	return (
 		<div className="App">
-			{location ? (
+			{error !== 0 ? (
+				<div className="fullScreenWrapper">
+					<p id="enable-location-error">Looks like you don't have location enabled, please "Allow" location and refresh the page. Currently the app requires you to enable location to find restaurants near you.</p>
+				</div>
+			) : location ? (
 				<>
 					<ErrorAlert
 						errorType={errorType}
@@ -63,13 +68,6 @@ function App() {
 					<Spinner animation="grow" variant="primary" role="status"></Spinner>
 					<span className="sr-only">Waiting For Location...</span>
 				</div>
-			)}
-			{error && (
-				<ErrorAlert
-					errorType={errorType}
-					showError={showError}
-					setShowError={setShowError}
-				></ErrorAlert>
 			)}
 		</div>
 	);

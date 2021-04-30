@@ -17,23 +17,24 @@
 
 .welcome-content .welcome-version {
   text-align: center;
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .welcome-content .welcome-sectionTitles {
   width: 100%;
   text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .welcome-content .welcome-sectionBodies {
   width: 100%;
-  padding: 5px;
-  text-align: justify;
+  text-align: left;
+  font-size: 0.9rem;
 }
 
 .welcome-content .welcome-sectionLists {
-  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,5 +48,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  list-style-position: outside;
+  margin-left: 1rem;
 }
 /*# sourceMappingURL=WelcomeModal.css.map */
