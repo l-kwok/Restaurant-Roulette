@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/api/places", (req, res) => {
 	const request = req.body;
-	console.log(req.body);
 	if (request.foodType === "") {
 		request.foodType =
 			"japanese,korean,vietnamese,hotdogs,chinese,newamerican,tradeamerican,indpak";
