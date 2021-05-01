@@ -14,10 +14,10 @@ const WelcomeModal = () => {
 				</Modal.Header>
 				<Modal.Body className="welcome-content">
 					<h3 className="welcome-version">Version: 1.0 </h3>
-					<h5 className="welcome-sectionTitles">Getting Started:</h5>
+					{/* <h5 className="welcome-sectionTitles">Getting Started:</h5>
 					<p className="welcome-sectionBodies">
 						Thanks for trying out the Random Restaurant Generator!
-					</p>
+					</p> */}
 					<h5 className="welcome-sectionTitles">What's New:</h5>
 					<p className="welcome-sectionBodies">
 						<ul className="welcome-sectionLists">
@@ -36,7 +36,7 @@ const WelcomeModal = () => {
 					<p className="welcome-sectionBodies">
 						<ul className="welcome-sectionLists">
 							<li>Custom Location Searching</li>
-							<li>Personal Restaurant Lists & Restaurant Favouriting</li>
+							<li>Restaurant Favourites</li>
 							<li>Restaurant History</li>
 						</ul>
 					</p>

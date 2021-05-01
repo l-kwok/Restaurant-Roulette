@@ -17,7 +17,7 @@
 
 .welcome-content .welcome-version {
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -31,7 +31,7 @@
 .welcome-content .welcome-sectionBodies {
   width: 100%;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 
 .welcome-content .welcome-sectionLists {
@@ -50,5 +50,19 @@
           justify-content: flex-start;
   list-style-position: outside;
   margin-left: 1rem;
+}
+
+@media only screen and (max-width: 490px) {
+  html body .welcome-content .welcome-version {
+    font-size: 1.2rem;
+  }
+  html body .welcome-content .welcome-sectionTitles {
+    font-size: 1rem;
+  }
+  html body .welcome-content .welcome-sectionBodies {
+    width: 100%;
+    text-align: left;
+    font-size: 1.1rem;
+  }
 }
 /*# sourceMappingURL=WelcomeModal.css.map */

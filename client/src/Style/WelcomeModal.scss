@@ -6,7 +6,7 @@
     border: none;
     .welcome-version{
         text-align: center;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
     }
 
@@ -20,7 +20,7 @@
     .welcome-sectionBodies{
         width: 100%;
         text-align: left;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
     }
     .welcome-sectionLists{
         display: flex;
@@ -30,4 +30,26 @@
         list-style-position: outside;
         margin-left: 1rem;
     }
+}
+
+@media only screen and (max-width: 490px) {
+	html {
+		body {
+            .welcome-content{
+                .welcome-version{
+                    font-size: 1.2rem;
+                }
+            
+                .welcome-sectionTitles{
+                    font-size: 1rem;
+                }
+            
+                .welcome-sectionBodies{
+                    width: 100%;
+                    text-align: left;
+                    font-size: 1.1rem;
+                }
+            }
+		}
+	}
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import {
 	GoogleMap,
 	useJsApiLoader,
@@ -40,9 +40,10 @@ const Map = ({
 		styles: MapStyle,
 	};
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		setPlacesIsLoaded(false);
 
+		//default request
 		let reqParsed = {
 			range: 5,
 			foodType: "",
@@ -70,7 +71,8 @@ const Map = ({
 			} else if (res.status === 429) {
 				setErrorType(2); //Quota Reached
 				setPlacesIsLoaded(true);
-			} else { //Res Status 200
+			} else {
+				//Res Status 200
 				res.text().then((res) => {
 					const resParsed = JSON.parse(res);
 					//format for google maps markers
@@ -80,7 +82,7 @@ const Map = ({
 							lng: item.coordinates.longitude,
 						};
 					});
-					
+
 					if (resParsed.total === 0) {
 						setErrorType(3);
 						setShowError(true);
@@ -88,6 +90,13 @@ const Map = ({
 					} else {
 						setErrorType(0);
 						setShowError(false);
+						// if(places === null){
+						// 	const place = resParsed.businesses[0];
+						// 	setSelectedPlace(place);
+						// 	setCenter(place.coordinates);
+						// 	setZoom(15);
+						// 	setInfoWindowIsOpen(true);
+						// }
 					}
 
 					setPlaces(resParsed);
