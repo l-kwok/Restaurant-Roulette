@@ -11,7 +11,7 @@ const Options = (props) => {
 	const [openNow, setOpenNow] = useState(true);
 	const closeModal = () => setShowModal(false);
 	const openModal = () => setShowModal(true);
-	
+
 	const submitChanges = (e) => {
 		const params = JSON.stringify({
 			range: rangeValue,
@@ -55,7 +55,7 @@ const Options = (props) => {
 								Types of Food: (Pick One)
 							</Form.Label>
 							<Row>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-1"
@@ -65,7 +65,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("japanese")}
 									/>
 								</Col>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-2"
@@ -75,7 +75,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("korean")}
 									/>
 								</Col>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-3"
@@ -85,9 +85,8 @@ const Options = (props) => {
 										onChange={() => setFoodType("newamerican,tradeamerican")}
 									/>
 								</Col>
-							</Row>
-							<Row>
-								<Col xs={12} md={4}>
+
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-4"
@@ -97,7 +96,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("chinese")}
 									/>
 								</Col>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-5"
@@ -107,7 +106,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("indpak")}
 									/>
 								</Col>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-6"
@@ -117,9 +116,8 @@ const Options = (props) => {
 										onChange={() => setFoodType("vietnamese")}
 									/>
 								</Col>
-							</Row>
-							<Row>
-								<Col xs={12} md={4}>
+
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-7"
@@ -129,7 +127,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("german")}
 									/>
 								</Col>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										inline
 										id="inline-radio-8"
@@ -139,7 +137,7 @@ const Options = (props) => {
 										onChange={() => setFoodType("hotdogs")}
 									/>
 								</Col>
-								<Col xs={12} md={4}>
+								<Col xs={6} md={4}>
 									<Form.Check
 										id="inline-radio-9"
 										type={"radio"}
@@ -148,9 +146,8 @@ const Options = (props) => {
 										onChange={() => setFoodType("malaysian")}
 									/>
 								</Col>
-							</Row>
-							<Row>
-								<Col xs={12} md={4}>
+
+								<Col xs={6} md={4}>
 									<Form.Check
 										id="inline-radio-10"
 										type={"radio"}
