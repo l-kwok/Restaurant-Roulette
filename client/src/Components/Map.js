@@ -74,6 +74,7 @@ const Map = ({
 			} else {
 				//Res Status 200
 				res.text().then((res) => {
+					console.log(res);
 					const resParsed = JSON.parse(res);
 					//format for google maps markers
 					resParsed.businesses.forEach((item) => {

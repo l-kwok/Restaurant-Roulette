@@ -72,8 +72,8 @@ if (process.env.NODE_ENV === "development") {
 				}
 			)
 			.then((response) => {
-				// console.log(response.data);
-				res.send(response.data);
+				res.json(response.data);
+				// res.send(response.data);
 				// fs.writeFile("placesData.json", JSON.stringify(response.data), (err) => {
 				// 	if (err) {
 				// 		throw err;
